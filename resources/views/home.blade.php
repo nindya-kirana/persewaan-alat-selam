@@ -13,17 +13,115 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
         }
 
+        /* Navbar */
+        .navbar {
+            background-color: white;
+            padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .site-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #1a7f64;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover {
+            color: #1a7f64;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
         .hero-section {
             background-image: url('/images/lamun-background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            min-height: 100vh;
+            min-height: 600px;
             position: relative;
-            display: flex;
-            flex-direction: column;
+            overflow: hidden;
+            padding: 60px 50px;
         }
 
         .hero-section::before {
@@ -33,83 +131,66 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgb(70, 150, 103) 0%, rgba(9, 86, 47, 0.75) 5%);
+            background: linear-gradient(135deg, rgba(26, 127, 100, 0.85) 0%, rgba(13, 86, 64, 0.85) 100%);
         }
 
-        .header { //logo dan judul situs
-            position: relative;
-            z-index: 10;
-            padding: 20px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 90px;
-            height: 90px;
-            background-color: transparent;
-            border-radius: 50%;
-            padding: 5px;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .site-title {
-            color: white;
-            font-size: 37px;
-            font-weight: 600;
-        }
-
-        .content {
-            position: relative;
-            z-index: 10;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 50px;
-            //max-width: 1600px;
+        .hero-content {
+            max-width: 1400px;
             margin: 0 auto;
-            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 45px;
+            position: relative;
+            z-index: 2;
         }
 
-        .main-title { //judul utama
-            color: #ffffff;
-            font-size: 48px;
-            color: #ffffff;
+        .hero-text {
+            flex: 1;
+            color: white;
+        }
+
+        .hero-description {
+            font-size: 23px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .hero-title {
+            font-size: 53px;
             font-weight: 700;
-            margin-bottom: 30px;
-            letter-spacing: -0.5px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .description { //deskripsi di bawah judul utama
-            color: #ffffff;
-            font-size: 20px;
-            color: #ffffff;
-            line-height: 1.7;
-            max-width: 1200px;
-            margin-bottom: 50px;
-            font-weight: 400;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero-image { // gambar dugong
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 0;
+            position: relative;
+            z-index: 10;
+            margin-left: -100px;
         }
 
-        .search-card {
-            background: white;
+        .hero-image img {
+            max-width: 120%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        /* Search Form */
+        .search-form-container {
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 40px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            width: 101%;
+            padding: 40px 60px;  /* UBAH dari 30px jadi 40px 60px */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
 
         .form-grid {
@@ -117,8 +198,9 @@
             grid-template-columns: repeat(4, 1fr) auto;
             gap: 20px;
             align-items: end;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .form-group {
@@ -127,10 +209,23 @@
         }
 
         .form-label {
-            color: #002d12;
-            font-size: 16px;
+            color: #000;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            padding: 12px 15px 12px 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #1a7f64;
         }
 
         .input-wrapper {
@@ -139,34 +234,17 @@
 
         .input-icon {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #666;
-            pointer-events: none;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 15px 14px 45px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #002d12;
-            box-shadow: 0 0 0 3px rgba(13, 85, 102, 0.1);
         }
 
         .search-button {
-            background: #002d12;
+            background: #0d3820;
             color: white;
             border: none;
-            padding: 14px 40px;
+            padding: 14px 30px;
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
@@ -179,12 +257,94 @@
         }
 
         .search-button:hover {
-            background: #094454;
+            background: #0a2918;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(13, 85, 102, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
+        /* Catalog Section */
+        .catalog-section {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 50px;
+        }
+
+        .catalog-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a7f64;
+        }
+
+        .price-period {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
+            .navbar {
+                padding: 15px 30px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+            }
+
             .form-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -192,116 +352,257 @@
             .search-button {
                 grid-column: 1 / -1;
             }
+
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
-            .header {
-                padding: 20px 30px;
+            .navbar {
+                flex-wrap: wrap;
+                padding: 15px 20px;
             }
 
-            .content {
-                padding: 30px;
+            .search-container {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                margin-top: 15px;
             }
 
-            .main-title {
-                font-size: 36px;
+            .nav-menu {
+                gap: 15px;
+                font-size: 14px;
             }
 
-            .description {
-                font-size: 18px;
+            .hero-section {
+                padding: 40px 20px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-description {
+                font-size: 20px;
             }
 
             .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            .search-card {
-                padding: 30px 20px;
+            .catalog-section {
+                padding: 0 20px;
+            }
+
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hero-section">
-        <div class="header">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
             <div class="logo">
-                <img src="/images/logo-seacrest.png" alt="Seacrest Logo">
+                <img src="/images/logo-seacrest.png" alt="Seacrest Logo" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
-            <h1 class="site-title">Seacrest Indonesia</h1>
+            <span class="site-name">Seacrest Indonesia</span>
+        </div>
+        
+        <div class="search-container">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" class="search-input" placeholder="Cari Alat">
         </div>
 
-        <div class="content">
-            <h2 class="main-title">Sewa Alat Selam Seacrest</h2>
-            <p class="description">
-                Penyewaan alat selam dan riset kelautan di Seacrest kini jadi lebih mudah, praktis, dan mendukung 
-                penuh kebutuhan eksplorasi bawah air Anda. Kami menyediakan berbagai pilihan alat selam berkualitas,
-                mulai dari perlengkapan standar hingga peralatan elektronik mutakhir untuk menunjang aktivitas 
-                profesional maupun penelitian.
-            </p>
+        <div class="nav-menu">
+            <a href="#" class="nav-item">RIWAYAT</a>
+            <span class="cart-icon">🛒</span>
+            <a href="#" class="nav-item">CONTACT US</a>
+            <a href="#" class="nav-item">LOGIN</a>
+        </div>
+    </nav>
 
-            <div class="search-card">
-                <form action="{{ route('rental.search') }}" method="GET">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">Tanggal Mulai Sewa</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                                <input type="date" name="tanggal_mulai" class="form-input" id="tanggal_mulai" min="{{ date('Y-m-d') }}" required>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">SEWA ALAT SELAM<br>SEACREST INDONESIA</h1>
+                <p class="hero-description">
+                    Penyewaan alat selam dan riset kelautan di Seacrest kini jadi lebih mudah, praktis, dan mendukung 
+                    penuh kebutuhan eksplorasi bawah air Anda.
+                </p>
+
+                <!-- Search Form -->
+                <div class="search-form-container">
+                    <form action="#" method="GET">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Tanggal Mulai Sewa</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <input type="date" name="tanggal_mulai" class="form-input" id="tanggal_mulai" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Waktu Mulai</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <input type="time" name="waktu_mulai" class="form-input" required>
+                            <div class="form-group">
+                                <label class="form-label">Waktu Mulai</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <input type="time" name="waktu_mulai" class="form-input" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Tanggal Selesai</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                                <input type="date" name="tanggal_selesai" class="form-input" id="tanggal_selesai" min="{{ date('Y-m-d') }}" required>
+                            <div class="form-group">
+                                <label class="form-label">Tanggal Selesai</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <input type="date" name="tanggal_selesai" class="form-input" id="tanggal_selesai" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Waktu Selesai</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <input type="time" name="waktu_selesai" class="form-input" required>
+                            <div class="form-group">
+                                <label class="form-label">Waktu Selesai</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <input type="time" name="waktu_selesai" class="form-input" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <button type="submit" class="search-button">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                            Cari Alat
-                        </button>
-                    </div>
-                </form>
+                            <button type="submit" class="search-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
+                                Cari Alat
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="/images/dugong.jpg" alt="Dugong" style="border-radius: 20px;">
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section">
+        <h2 class="catalog-title">Katalog Alat Selam</h2>
+        <div class="catalog-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400" alt="BCD">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">BCD</h3>
+                    <p class="product-price">Rp 75.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Belt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Belt</h3>
+                    <p class="product-price">Rp 20.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?w=400" alt="Bola Duga">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Bola Duga</h3>
+                    <p class="product-price">Rp 20.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=400" alt="Botol Sampel">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Botol Sampel</h3>
+                    <p class="product-price">Rp 10.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Booties">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Booties</h3>
+                    <p class="product-price">Rp 75.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Slate">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Slate</h3>
+                    <p class="product-price">Rp 75.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Regulator ScubaPro">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Regulator ScubaPro</h3>
+                    <p class="product-price">Rp 75.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="BCD Pro">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">BCD</h3>
+                    <p class="product-price">Rp 75.000 <span class="price-period">/Hari</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         // Set minimum date untuk tanggal mulai dan selesai ke hari ini
         const today = new Date().toISOString().split('T')[0];
