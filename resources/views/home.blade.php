@@ -278,23 +278,6 @@
             top: 50%;
             transform: translateY(-50%);
             color: #666;
-            pointer-events: none;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 15px 14px 45px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #002d12;
-            box-shadow: 0 0 0 3px rgba(13, 85, 102, 0.1);
         }
 
         .search-button {
@@ -555,56 +538,37 @@
                     penuh kebutuhan eksplorasi bawah air Anda.
                 </p>
 
-            <div class="search-card">
-                <form action="{{ route('rental.search') }}" method="GET">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">Tanggal Mulai Sewa</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                                <input type="date" name="tanggal_mulai" class="form-input" id="tanggal_mulai" min="{{ date('Y-m-d') }}" required>
+                <!-- Search Form -->
+                <div class="search-form-container">
+                    <form action="#" method="GET">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Tanggal Mulai Sewa</label>
+                                <div class="input-wrapper">
+                                    <input type="date" name="tanggal_mulai" class="form-input" id="tanggal_mulai" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Waktu Mulai</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <input type="time" name="waktu_mulai" class="form-input" required>
+                            <div class="form-group">
+                                <label class="form-label">Waktu Mulai</label>
+                                <div class="input-wrapper">
+                                    <input type="time" name="waktu_mulai" class="form-input" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Tanggal Selesai</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                                <input type="date" name="tanggal_selesai" class="form-input" id="tanggal_selesai" min="{{ date('Y-m-d') }}" required>
+                            <div class="form-group">
+                                <label class="form-label">Tanggal Selesai</label>
+                                <div class="input-wrapper">
+                                    <input type="date" name="tanggal_selesai" class="form-input" id="tanggal_selesai" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Waktu Selesai</label>
-                            <div class="input-wrapper">
-                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <input type="time" name="waktu_selesai" class="form-input" required>
+                            <div class="form-group">
+                                <label class="form-label">Waktu Selesai</label>
+                                <div class="input-wrapper">
+                                    <input type="time" name="waktu_selesai" class="form-input" required>
+                                </div>
                             </div>
-                        </div>
 
                             <button type="submit" class="search-button">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
