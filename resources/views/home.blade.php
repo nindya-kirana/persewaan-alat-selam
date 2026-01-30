@@ -16,24 +16,58 @@
             background-color: #f5f5f5;
         }
 
-        /* Navbar */
+        /* Hero Section - Utama */
+        .hero-section {
+            background-image: url('/images/lamun-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 50px 60px;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 127, 100, 0.85) 0%, rgba(13, 86, 64, 0.85) 100%);
+        }
+
+        /* Navbar Baru - sesuai gambar */
         .navbar {
-            background-color: white;
-            padding: 15px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+            margin-bottom: 40px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Container kiri: Logo + Search Bar */
+        .navbar-left {
             display: flex;
             align-items: center;
             gap: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            justify-content: space-between;
+            flex: 1;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
         }
 
         .logo {
@@ -44,27 +78,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
+            overflow: hidden;
         }
+
         .logo img {
             width: 100%;
             height: 100%;
             object-fit: contain;
         }
 
-        .site-name {
-            font-size: 24px;
-            font-weight: 600;
-            color: #000;
-        }
-
+        /* Search Bar di samping logo */
         .search-container {
             flex: 1;
-            max-width: 500px;
+            max-width: 400px;
             position: relative;
-            margin: 0 auto;
         }
 
         .search-input {
@@ -75,6 +102,7 @@
             font-size: 16px;
             outline: none;
             transition: border-color 0.3s;
+            background: white;
         }
 
         .search-input:focus {
@@ -89,13 +117,48 @@
             color: #666;
         }
 
+        /* Container kanan: Menu navigasi */
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         .nav-menu {
             display: flex;
             align-items: center;
             gap: 30px;
         }
 
-        .nav-item {
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        /* Button Contact Us */
+        .contact-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Link Login */
+        .login-link {
             text-decoration: none;
             color: #000;
             font-weight: 500;
@@ -103,37 +166,11 @@
             transition: color 0.3s;
         }
 
-        .nav-item:hover {
+        .login-link:hover {
             color: #1a7f64;
         }
 
-        .cart-icon {
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background-image: url('/images/lamun-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 600px;
-            position: relative;
-            overflow: hidden;
-            padding: 60px 50px;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(26, 127, 100, 0.85) 0%, rgba(13, 86, 64, 0.85) 100%);
-        }
-
+        /* Bagian sisanya tetap sama */
         .hero-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -164,7 +201,7 @@
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-image { // gambar dugong
+        .hero-image {
             flex: 1.2;
             display: flex;
             justify-content: center;
@@ -179,13 +216,14 @@
             max-width: 120%;
             height: auto;
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            border-radius: 20px;
         }
 
         /* Search Form */
         .search-form-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 40px 60px;  /* UBAH dari 30px jadi 40px 60px */
+            padding: 40px 60px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             margin-top: 20px;
             backdrop-filter: blur(10px);
@@ -210,18 +248,20 @@
 
         .form-label {
             color: #000;
-            font-size: 14px;
+            font-size: 17px;
             font-weight: 600;
             margin-bottom: 8px;
         }
 
         .form-input {
-            padding: 12px 15px 12px 40px;
+            width: 100%;
+            padding: 12px 15px 12px 36px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
             transition: border-color 0.3s;
+            background: white;
         }
 
         .form-input:focus {
@@ -246,7 +286,7 @@
             border: none;
             padding: 14px 30px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -270,10 +310,11 @@
         }
 
         .catalog-title {
-            font-size: 32px;
+            font-size: 40px;
             font-weight: 700;
             color: #000;
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .catalog-grid {
@@ -336,6 +377,12 @@
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-section {
+                padding: 30px 30px 60px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .navbar {
                 padding: 15px 30px;
@@ -343,6 +390,7 @@
 
             .hero-content {
                 flex-direction: column;
+                gap: 30px;
             }
 
             .form-grid {
@@ -356,28 +404,41 @@
             .catalog-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+
+            .hero-image {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .hero-image img {
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 768px) {
+            .hero-section {
+                padding: 20px 20px 50px;
+                min-height: auto;
+            }
+
             .navbar {
-                flex-wrap: wrap;
+                flex-direction: column;
+                gap: 15px;
                 padding: 15px 20px;
             }
 
-            .search-container {
-                order: 3;
+            .navbar-left {
                 width: 100%;
-                max-width: 100%;
-                margin-top: 15px;
+                justify-content: space-between;
             }
 
-            .nav-menu {
-                gap: 15px;
-                font-size: 14px;
+            .search-container {
+                max-width: 60%;
             }
 
-            .hero-section {
-                padding: 40px 20px;
+            .navbar-right {
+                width: 100%;
+                justify-content: space-between;
             }
 
             .hero-title {
@@ -385,7 +446,11 @@
             }
 
             .hero-description {
-                font-size: 20px;
+                font-size: 18px;
+            }
+
+            .search-form-container {
+                padding: 30px 20px;
             }
 
             .form-grid {
@@ -401,36 +466,70 @@
                 gap: 20px;
             }
         }
+
+        @media (max-width: 480px) {
+            .navbar-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-container {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .navbar-right {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <div class="logo">
-                <img src="/images/logo-seacrest.png" alt="Seacrest Logo" style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-            <span class="site-name">Seacrest Indonesia</span>
-        </div>
-        
-        <div class="search-container">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input type="text" class="search-input" placeholder="Cari Alat">
-        </div>
-
-        <div class="nav-menu">
-            <a href="#" class="nav-item">RIWAYAT</a>
-            <span class="cart-icon">🛒</span>
-            <a href="#" class="nav-item">CONTACT US</a>
-            <a href="#" class="nav-item">LOGIN</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
+    <!-- Hero Section dengan Navbar di dalamnya -->
     <section class="hero-section">
+        <!-- Navbar Baru sesuai gambar -->
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="/images/logo-seacrest.png" alt="Seacrest Logo">
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Cari Alat">
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <span class="cart-icon">🛒</span>
+                
+                <div class="nav-menu">
+                    <a href="#" class="contact-button">CONTACT US</a>
+                    <a href="#" class="login-link">LOGIN</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Konten Hero -->
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">SEWA ALAT SELAM<br>SEACREST INDONESIA</h1>
@@ -446,12 +545,6 @@
                             <div class="form-group">
                                 <label class="form-label">Tanggal Mulai Sewa</label>
                                 <div class="input-wrapper">
-                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                                    </svg>
                                     <input type="date" name="tanggal_mulai" class="form-input" id="tanggal_mulai" required>
                                 </div>
                             </div>
@@ -459,10 +552,6 @@
                             <div class="form-group">
                                 <label class="form-label">Waktu Mulai</label>
                                 <div class="input-wrapper">
-                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
                                     <input type="time" name="waktu_mulai" class="form-input" required>
                                 </div>
                             </div>
@@ -470,12 +559,6 @@
                             <div class="form-group">
                                 <label class="form-label">Tanggal Selesai</label>
                                 <div class="input-wrapper">
-                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                                    </svg>
                                     <input type="date" name="tanggal_selesai" class="form-input" id="tanggal_selesai" required>
                                 </div>
                             </div>
@@ -483,10 +566,6 @@
                             <div class="form-group">
                                 <label class="form-label">Waktu Selesai</label>
                                 <div class="input-wrapper">
-                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
                                     <input type="time" name="waktu_selesai" class="form-input" required>
                                 </div>
                             </div>
@@ -504,14 +583,14 @@
             </div>
 
             <div class="hero-image">
-                <img src="/images/dugong.jpg" alt="Dugong" style="border-radius: 20px;">
+                <img src="/images/dugong.jpg" alt="Dugong">
             </div>
         </div>
     </section>
 
     <!-- Catalog Section -->
     <section class="catalog-section">
-        <h2 class="catalog-title">Katalog Alat Selam</h2>
+        <h2 class="catalog-title">Our Catalog</h2>
         <div class="catalog-grid">
             <!-- Product 1 -->
             <div class="product-card">
