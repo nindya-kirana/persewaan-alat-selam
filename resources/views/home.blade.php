@@ -9,104 +9,44 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #ffffff;
         }
 
-        /* Hero Section - Utama */
-        .hero-section {
-            background-image: url('/images/lamun-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 700px;
-            position: relative;
-            overflow: hidden;
-            padding: 30px 50px 60px;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(26, 127, 100, 0.85) 0%, rgba(13, 86, 64, 0.85) 100%);
-        }
-
-        /* Navbar Baru - sesuai gambar */
+        /* --- NAVBAR --- */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 15px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 2;
-            margin-bottom: 40px;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 15px 50px;
+            background: white;
         }
 
-        /* Container kiri: Logo + Search Bar */
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 30px;
+        .navbar-left .logo img {
+            height: 50px;
+        }
+
+        .navbar-center {
             flex: 1;
+            max-width: 500px;
+            margin: 0 40px;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background-color: transparent;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Search Bar di samping logo */
         .search-container {
-            flex: 1;
-            max-width: 400px;
             position: relative;
+            width: 100%;
         }
 
         .search-input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
-            border: 2px solid #ddd;
+            padding: 10px 20px 10px 40px;
+            border: 2px solid #000;
             border-radius: 25px;
             font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s;
-            background: white;
-        }
-
-        .search-input:focus {
-            border-color: #1a7f64;
+            font-weight: 600;
         }
 
         .search-icon {
@@ -114,195 +54,146 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #666;
         }
 
-        /* Container kanan: Menu navigasi */
         .navbar-right {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
         }
 
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .cart-icon {
-            font-size: 24px;
-            cursor: pointer;
-            color: #000;
-        }
-
-        /* Button Contact Us */
-        .contact-button {
-            background: #000;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .contact-button:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Link Login */
         .login-link {
             text-decoration: none;
-            color: #000;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s;
+            color: black;
+            font-weight: 800;
+            font-size: 14px;
         }
 
-        .login-link:hover {
-            color: #1a7f64;
-        }
-
-        /* Bagian sisanya tetap sama */
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: flex-start;
-            gap: 45px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text {
-            flex: 1;
+        .contact-button {
+            background: black;
             color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
         }
 
-        .hero-description {
-            font-size: 23px;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .hero-title {
-            font-size: 53px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-image {
-            flex: 1.2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top: 0;
-            position: relative;
-            z-index: 10;
-            margin-left: -100px;
-        }
-
-        .hero-image img {
-            max-width: 120%;
-            height: auto;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
-            border-radius: 20px;
-        }
-
-        /* Search Form */
-        .search-form-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px 60px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            margin-top: 20px;
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr) auto;
-            gap: 20px;
-            align-items: end;
-            max-width: 1200px;
+        /* --- HERO SECTION --- */
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
+        /* PERBAIKAN DI SINI: Menggunakan Multiple Background agar warna hijau muncul */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(13, 86, 64, 0.65) 0%, rgba(26, 127, 100, 0.65) 100%), 
+                        url('/images/lamun-background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            min-height: 450px;
+            position: relative;
+            padding: 60px 80px;
+            color: white;
+            overflow: visible; 
+            margin-bottom: 50px;
         }
 
-        .form-label {
-            color: #000;
-            font-size: 17px;
-            font-weight: 600;
+        .hero-text {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* --- DUGONG OVERLAP --- */
+        .dugong-image {
+            position: absolute;
+            right: 20px;
+            top: -40px; 
+            width: 450px;
+            z-index: 10;
+        }
+
+        .dugong-image img {
+            width: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        /* --- FLOATING SEARCH FORM --- */
+        .search-form-wrapper {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 5;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) 200px;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 14px;
             margin-bottom: 8px;
         }
 
-        .form-input {
-            width: 100%;
-            padding: 12px 15px 12px 36px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s;
-            background: white;
-        }
-
-        .form-input:focus {
-            border-color: #1a7f64;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-
-        .search-button {
-            background: #0d3820;
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
+        .input-with-icon {
             display: flex;
             align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 8px 12px;
+        }
+
+        .input-with-icon input {
+            border: none;
+            outline: none;
+            width: 100%;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .btn-search {
+            background: #052c16;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 10px;
-            transition: all 0.3s;
-            white-space: nowrap;
+            cursor: pointer;
         }
 
-        .search-button:hover {
-            background: #0a2918;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* Catalog Section */
+        /* --- CATALOG --- */
         .catalog-section {
             max-width: 1400px;
             margin: 60px auto;
@@ -319,7 +210,7 @@
 
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); 
+            grid-template-columns: repeat(4, 1fr);
             gap: 25px;
         }
 
@@ -377,251 +268,120 @@
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .hero-section {
-                padding: 30px 30px 60px;
-            }
-        }
-
         @media (max-width: 1024px) {
-            .navbar {
-                padding: 15px 30px;
-            }
-
-            .hero-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .form-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .search-button {
-                grid-column: 1 / -1;
-            }
-
-            .catalog-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-
-            .hero-image {
-                margin-left: 0;
-                margin-top: 20px;
-            }
-
-            .hero-image img {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 20px 20px 50px;
-                min-height: auto;
-            }
-
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-
-            .navbar-left {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .search-container {
-                max-width: 60%;
-            }
-
-            .navbar-right {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .hero-title {
-                font-size: 32px;
-            }
-
-            .hero-description {
-                font-size: 18px;
-            }
-
-            .search-form-container {
-                padding: 30px 20px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .catalog-section {
-                padding: 0 20px;
-            }
-
-            .catalog-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar-left {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .search-container {
-                max-width: 100%;
-                width: 100%;
-            }
-
-            .navbar-right {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-menu {
-                gap: 15px;
-                justify-content: center;
-            }
-
-            .hero-title {
-                font-size: 28px;
-            }
-
-            .hero-description {
-                font-size: 16px;
-            }
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .dugong-image { width: 300px; top: 0; }
         }
     </style>
 </head>
 <body>
-    <section class="hero-section">
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="/images/logo-seacrest.png" alt="Seacrest Logo">
-                    </div>
-                </div>
-                
-                <div class="search-container">
-                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input type="text" class="search-input" placeholder="Cari Alat">
-                </div>
-            </div>
 
-            <div class="navbar-right">
-                <span class="cart-icon">🛒</span>
-                <div class="nav-menu">
-                    <a href="#" class="contact-button">CONTACT US</a>
-                    <a href="#" class="login-link">LOGIN</a>
-                </div>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="logo"><img src="/images/logo-seacrest.png" alt="Seacrest Logo"></a>
+        </div>
+        <div class="navbar-center">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Cari Alat">
+                <span class="search-icon">🔍</span>
             </div>
-        </nav>
+        </div>
+        <div class="navbar-right">
+            <span class="cart-icon">🛒</span>
+            <a href="#" class="login-link">LOGIN</a>
+            <a href="#" class="contact-button">CONTACT US</a>
+        </div>
+    </nav>
 
-        <div class="hero-content">
+    <div class="container">
+        <section class="hero-banner">
             <div class="hero-text">
                 <h1 class="hero-title">SEWA ALAT SELAM<br>SEACREST INDONESIA</h1>
                 <p class="hero-description">
-                    Penyewaan alat selam dan riset kelautan di Seacrest kini jadi lebih mudah, praktis, dan mendukung 
-                    penuh kebutuhan eksplorasi bawah air Anda.
+                    Ingin mengumpulkan data terkait kelautan tetapi memiliki keterbatasan alat? Kami punya solusinya untuk Anda!
                 </p>
-
-                <div class="search-form-container">
-                    <form action="{{ route('rental.search') }}" method="GET">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label">Tanggal Mulai Sewa</label>
-                                <div class="input-wrapper">
-                                    <input type="date" name="tanggal_mulai" class="form-input" id="tanggal_mulai" min="{{ date('Y-m-d') }}" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Waktu Mulai</label>
-                                <div class="input-wrapper">
-                                    <input type="time" name="waktu_mulai" class="form-input" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Tanggal Selesai</label>
-                                <div class="input-wrapper">
-                                    <input type="date" name="tanggal_selesai" class="form-input" id="tanggal_selesai" min="{{ date('Y-m-d') }}" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Waktu Selesai</label>
-                                <div class="input-wrapper">
-                                    <input type="time" name="waktu_selesai" class="form-input" required>
-                                </div>
-                            </div>
-                            <button type="submit" class="search-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.35-4.35"></path>
-                                </svg>
-                                Cari Alat
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </div>
-            <div class="hero-image">
+
+            <div class="dugong-image">
                 <img src="/images/dugong.jpg" alt="Dugong">
             </div>
-        </div>
-    </section>
 
-    <section class="catalog-section">
-        <h2 class="catalog-title">Our Catalog</h2>
-        <div class="catalog-grid">
-            @forelse($products as $product)
-                <div class="product-card">
-                    <div class="product-image">
-                        @php
-                            $path = $product->image;
-                            if (!Str::contains($path, 'products/')) {
-                                $path = 'products/' . $path;
-                            }
-                        @endphp
-                        <img src="{{ asset('storage/' . $path) }}" 
-                             alt="{{ $product->nama_alat }}"
-                             onerror="this.src='https://placehold.co/400x400?text=No+Image'">
+            <div class="search-form-wrapper">
+                <form action="{{ route('rental.search') }}" method="GET">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Tanggal Mulai Sewa</label>
+                            <div class="input-with-icon">
+                                📅 <input type="date" name="tanggal_mulai" id="tanggal_mulai" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Waktu Mulai</label>
+                            <div class="input-with-icon">
+                                🕒 <input type="time" name="waktu_mulai" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Selesai</label>
+                            <div class="input-with-icon">
+                                📅 <input type="date" name="tanggal_selesai" id="tanggal_selesai" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Waktu Selesai</label>
+                            <div class="input-with-icon">
+                                🕒 <input type="time" name="waktu_selesai" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-search">
+                            🔍 Cari Alat
+                        </button>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-name">{{ $product->nama_alat }}</h3>
-                        <p class="product-price">
-                            Rp {{ number_format($product->variants->min('harga_per_hari'), 0, ',', '.') }} 
-                            <span class="price-period">/Hari</span>
-                        </p>
+                </form>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <h2 class="catalog-title">Our Best Gears</h2>
+            <div class="catalog-grid">
+                @forelse($products as $product)
+                    <div class="product-card">
+                        <div class="product-image">
+                            @php
+                                $path = $product->image;
+                                if (!Str::contains($path, 'products/')) {
+                                    $path = 'products/' . $path;
+                                }
+                            @endphp
+                            <img src="{{ asset('storage/' . $path) }}" 
+                                 alt="{{ $product->nama_alat }}"
+                                 onerror="this.src='https://placehold.co/400x400?text=No+Image'">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">{{ $product->nama_alat }}</h3>
+                            <p class="product-price">
+                                Rp {{ number_format($product->variants->min('harga_per_hari'), 0, ',', '.') }} 
+                                <span class="price-period">/hari</span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            @empty
-                <div style="grid-column: 1 / -1; padding: 50px; text-align: center; color: #666; border: 2px dashed #ccc; border-radius: 20px;">
-                    Belum ada produk untuk ditampilkan.
-                </div>
-            @endforelse
-        </div>
-    </section>
+                @empty
+                    <div style="grid-column: 1 / -1; padding: 80px; text-align: center; background: #fff; border-radius: 20px; border: 2px dashed #e2e8f0;">
+                        <p style="color: #94a3b8; font-weight: 500;">Maaf, belum ada produk tersedia saat ini.</p>
+                    </div>
+                @endforelse
+            </div>
+        </section>
+    </div>
 
     <script>
-        // Set minimum date untuk tanggal mulai dan selesai ke hari ini
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('tanggal_mulai').setAttribute('min', today);
         document.getElementById('tanggal_selesai').setAttribute('min', today);
 
-        // Update minimum tanggal selesai ketika tanggal mulai dipilih
         document.getElementById('tanggal_mulai').addEventListener('change', function() {
             const tanggalMulai = this.value;
             document.getElementById('tanggal_selesai').setAttribute('min', tanggalMulai);
-            
-            // Jika tanggal selesai sudah terisi dan lebih kecil dari tanggal mulai, reset
             const tanggalSelesai = document.getElementById('tanggal_selesai').value;
             if (tanggalSelesai && tanggalSelesai < tanggalMulai) {
                 document.getElementById('tanggal_selesai').value = '';
