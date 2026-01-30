@@ -42,18 +42,22 @@
 
         .search-input {
             width: 100%;
-            padding: 10px 20px 10px 40px;
+            padding: 10px 20px 10px 45px; /* Spasi kiri ditambah untuk ikon */
             border: 2px solid #000;
             border-radius: 25px;
             font-size: 16px;
             font-weight: 600;
         }
 
-        .search-icon {
+        /* Ikon Search di Navbar */
+        .search-icon-svg {
             position: absolute;
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: #666;
         }
 
         .navbar-right {
@@ -61,6 +65,17 @@
             align-items: center;
             gap: 25px;
         }
+
+        /* Ikon Keranjang */
+        .cart-icon-svg {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: #000;
+            transition: 0.3s;
+        }
+        
+        .cart-icon-svg:hover { color: #1a7f64; }
 
         .login-link {
             text-decoration: none;
@@ -86,7 +101,6 @@
             padding: 0 20px;
         }
 
-        /* PERBAIKAN DI SINI: Menggunakan Multiple Background agar warna hijau muncul */
         .hero-banner {
             background: linear-gradient(135deg, rgba(13, 86, 64, 0.65) 0%, rgba(26, 127, 100, 0.65) 100%), 
                         url('/images/lamun-background.jpg'); 
@@ -161,6 +175,7 @@
             font-weight: 700;
             font-size: 14px;
             margin-bottom: 8px;
+            color: #333;
         }
 
         .input-with-icon {
@@ -169,13 +184,19 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 8px 12px;
+            gap: 10px;
+        }
+
+        .form-icon-svg {
+            width: 18px;
+            height: 18px;
+            color: #666;
         }
 
         .input-with-icon input {
             border: none;
             outline: none;
             width: 100%;
-            margin-left: 10px;
             font-size: 14px;
         }
 
@@ -191,7 +212,10 @@
             justify-content: center;
             gap: 10px;
             cursor: pointer;
+            transition: 0.3s;
         }
+        
+        .btn-search:hover { background: #0d4a2d; }
 
         /* --- CATALOG --- */
         .catalog-section {
@@ -282,12 +306,16 @@
         </div>
         <div class="navbar-center">
             <div class="search-container">
+                <svg class="search-icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
                 <input type="text" class="search-input" placeholder="Cari Alat">
-                <span class="search-icon">🔍</span>
             </div>
         </div>
         <div class="navbar-right">
-            <span class="cart-icon">🛒</span>
+            <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
             <a href="#" class="login-link">LOGIN</a>
             <a href="#" class="contact-button">CONTACT US</a>
         </div>
@@ -310,31 +338,32 @@
                 <form action="{{ route('rental.search') }}" method="GET">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Tanggal Mulai Sewa</label>
+                            <label>Tanggal Mulai</label>
                             <div class="input-with-icon">
-                                📅 <input type="date" name="tanggal_mulai" id="tanggal_mulai" required>
+                                <input type="date" name="tanggal_mulai" id="tanggal_mulai" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Waktu Mulai</label>
                             <div class="input-with-icon">
-                                🕒 <input type="time" name="waktu_mulai" required>
+                                <input type="time" name="waktu_mulai" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Tanggal Selesai</label>
                             <div class="input-with-icon">
-                                📅 <input type="date" name="tanggal_selesai" id="tanggal_selesai" required>
+                                <input type="date" name="tanggal_selesai" id="tanggal_selesai" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Waktu Selesai</label>
                             <div class="input-with-icon">
-                                🕒 <input type="time" name="waktu_selesai" required>
+                                <input type="time" name="waktu_selesai" required>
                             </div>
                         </div>
                         <button type="submit" class="btn-search">
-                            🔍 Cari Alat
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            Cari Alat
                         </button>
                     </div>
                 </form>
@@ -347,13 +376,7 @@
                 @forelse($products as $product)
                     <div class="product-card">
                         <div class="product-image">
-                            @php
-                                $path = $product->image;
-                                if (!Str::contains($path, 'products/')) {
-                                    $path = 'products/' . $path;
-                                }
-                            @endphp
-                            <img src="{{ asset('storage/' . $path) }}" 
+                            <img src="{{ asset('storage/' . (Str::contains($product->image, 'products/') ? $product->image : 'products/'.$product->image)) }}" 
                                  alt="{{ $product->nama_alat }}"
                                  onerror="this.src='https://placehold.co/400x400?text=No+Image'">
                         </div>
@@ -382,10 +405,6 @@
         document.getElementById('tanggal_mulai').addEventListener('change', function() {
             const tanggalMulai = this.value;
             document.getElementById('tanggal_selesai').setAttribute('min', tanggalMulai);
-            const tanggalSelesai = document.getElementById('tanggal_selesai').value;
-            if (tanggalSelesai && tanggalSelesai < tanggalMulai) {
-                document.getElementById('tanggal_selesai').value = '';
-            }
         });
     </script>
 </body>
