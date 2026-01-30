@@ -53,6 +53,9 @@ class ProductResource extends Resource
                             ->required(),
                         FileUpload::make('image')
                             ->image()
+                            ->disk('public') // Pastikan ini ada
+                            ->directory('products')
+                            ->visibility('public')
                             ->required()
                             ->columnSpanFull(),
                         Textarea::make('deskripsi')
@@ -89,7 +92,9 @@ class ProductResource extends Resource
             ->query(\App\Models\ProductVariant::query()->with('product'))
             ->columns([
                 Tables\Columns\ImageColumn::make('product.image')
-                    ->label('Foto'),
+                    ->label('Foto')
+                    ->disk('public')
+                    ->visibility('public'),
                 Tables\Columns\TextColumn::make('product.nama_alat')
                     ->label('Nama Alat')
                     ->searchable()
