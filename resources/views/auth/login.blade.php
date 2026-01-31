@@ -15,32 +15,46 @@
         body, html {
             height: 100%;
             overflow: hidden;
+            /* Background utama di body agar frame putih terlihat kontras */
+            background-color: #f0f2f5; 
         }
 
-        .container {
+        /* Container sekarang berfungsi sebagai area padding/frame luar */
+        .page-wrapper {
             display: flex;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
             width: 100%;
+            padding: 150px; /* Ini padding putih di sekelilingnya */
+            background: #e3ffea; 
+        }
+
+        /* Container utama dengan background gambar dan sudut melengkung */
+        .main-card {
+            display: flex;
+            height: 130%;
+            width: 60%;
             background: url('/images/lamun2.jpg');
             background-size: cover;
             background-position: center;
+            border-radius: 10px; /* Sudut melengkung halus */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* Sisi Kiri: Box Form Login */
         .login-box {
-            width: 45%;
-            height: 100%;
-            /* Overlay hijau transparan sesuai contoh (Statistik Dadboard (6).jpg) */
-            background: linear-gradient(to bottom, rgba(167, 243, 208, 0.8), rgba(167, 243, 208, 0.4));
-            backdrop-filter: blur(5px);
+            width: 50%; //bagian logo
+            height: 180%;
+            background: linear-gradient(to bottom, rgba(111, 196, 245, 0.64), rgba(146, 245, 199, 0.64));
+            backdrop-filter: blur(3px);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 8%;
+            padding: 0 5%; //bagian login
             z-index: 2;
         }
 
-        /* Sisi Kanan: Logo */
         .logo-box {
             width: 55%;
             height: 100%;
@@ -49,20 +63,24 @@
             justify-content: center;
         }
 
-        h2 {
-            font-size: 3.5rem;
+        h2 { // tulisan login
+            font-size: 26px;
             font-weight: 900;
             color: #000;
             margin-bottom: 5px;
             letter-spacing: 5px;
             text-transform: uppercase;
+            text-align: center;
+            width: 100%;
         }
 
-        .sub-text {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
+        .sub-text { //tulisan pengguna baru registrasi
+            font-size: 16px;
+            margin-bottom: 30px;
             font-weight: 500;
             color: #1a1a1a;
+            text-align: center;
+            width: 100%;
         }
 
         .green-link {
@@ -75,34 +93,35 @@
             margin-bottom: 20px;
         }
 
-        label {
+        label { // tulisan email dan password
             display: block;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-size: 16px;
             font-weight: 600;
             color: #1a1a1a;
         }
 
         input {
-            width: 100%;
-            padding: 15px 25px;
-            border-radius: 35px;
-            border: none;
-            background: white;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: 93%;
+            padding: 12px 25px;
+            border-radius: 35px; //lebar atas bawah
+            border: 0;
             outline: none;
+            background: white;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: block;
         }
 
         .btn-mulai {
-            margin-top: 20px;
+            margin-top: 10px;
             background: #052c16;
             color: white;
             border: none;
-            padding: 15px;
-            width: 100%;
+            padding: 12px;
+            width: 93%;
             border-radius: 35px;
-            font-size: 1.3rem;
+            font-size: 18px;
             font-weight: 800;
             cursor: pointer;
             letter-spacing: 2px;
@@ -116,56 +135,59 @@
         }
 
         .logo-white {
-            width: 65%;
-            max-width: 500px;
+            width: 60%;
+            max-width: 450px;
             filter: drop-shadow(0 0 15px rgba(0,0,0,0.1));
         }
 
-        /* Alert Error */
         .error-msg {
             background: #fee2e2;
             color: #b91c1c;
             padding: 10px 20px;
             border-radius: 10px;
             margin-bottom: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
         @media (max-width: 768px) {
-            .container { flex-direction: column; }
-            .login-box, .logo-box { width: 100%; height: 50%; }
+            .page-wrapper { padding: 15px; }
+            .main-card { flex-direction: column; }
+            .login-box, .logo-box { width: 100%; height: 50%; padding: 30px; }
+            h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-box">
-            <h2>LOGIN</h2>
-            <p class="sub-text">Pengguna baru? <a href="{{ route('register') }}" class="green-link">Registrasi segera!</a></p>
+    <div class="page-wrapper">
+        <div class="main-card">
+            <div class="login-box">
+                <h2>LOGIN</h2>
+                <p class="sub-text">Pengguna baru? <a href="{{ route('register') }}" class="green-link">Registrasi segera!</a></p>
 
-            @if($errors->any())
-                <div class="error-msg">
-                    Email atau password yang Anda masukkan salah.
-                </div>
-            @endif
+                @if($errors->any())
+                    <div class="error-msg">
+                        Email atau password yang Anda masukkan salah.
+                    </div>
+                @endif
 
-            <form action="{{ route('login') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" required>
-                </div>
-                <button type="submit" class="btn-mulai">MULAI</button>
-            </form>
-        </div>
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="{{ old('email') }}" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn-mulai">MULAI</button>
+                </form>
+            </div>
 
-        <div class="logo-box">
-            <img src="/images/logo-seacrest.png" class="logo-white" alt="Logo Seacrest Indonesia">
+            <div class="logo-box">
+                <img src="/images/logoputih.png" class="logo-white" alt="Logo Seacrest Indonesia">
+            </div>
         </div>
     </div>
 </body>

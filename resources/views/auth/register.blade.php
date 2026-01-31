@@ -15,26 +15,40 @@
         body, html {
             height: 100%;
             overflow: hidden;
+            background-color: #f0f2f5;
         }
 
-        .container {
+        .page-wrapper {
             display: flex;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
             width: 100%;
+            padding: 150px; /* Ini padding putih di sekelilingnya */
+            background: #e3ffea;
+        }
+
+        .main-card { /* Container utama dengan background gambar dan sudut melengkung */
+            display: flex;
+            height: 140%;
+            width: 60%;
             background: url('/images/lamun2.jpg');
             background-size: cover;
             background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .login-box {
-            width: 45%;
+            width: 50%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(167, 243, 208, 0.8), rgba(167, 243, 208, 0.4));
-            backdrop-filter: blur(5px);
+            background: linear-gradient(to bottom, rgba(111, 196, 245, 0.64), rgba(146, 245, 199, 0.64));
+            backdrop-filter: blur(3px);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 8%;
+            padding: 0 5%;
             z-index: 2;
         }
 
@@ -44,50 +58,50 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         h2 {
-            font-size: 3rem;
+            font-size: 26px;
             font-weight: 900;
             color: #000;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             letter-spacing: 5px;
             text-transform: uppercase;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            font-size: 1.1rem;
+            font-size: 16px;
             font-weight: 600;
             color: #1a1a1a;
         }
 
         input {
-            width: 100%;
+            width: 93%;
             padding: 12px 25px;
-            border-radius: 30px;
-            border: none;
+            border-radius: 35px;
+            border: 0;
             background: white;
-            font-size: 1rem;
+            font-size: 0.95rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             outline: none;
+            display: block;
         }
 
         .btn-mulai {
-            margin-top: 20px;
+            margin-top: 10px;
             background: #052c16;
             color: white;
             border: none;
-            padding: 15px;
-            width: 100%;
-            border-radius: 30px;
-            font-size: 1.2rem;
+            padding: 12px;
+            width: 93%;
+            border-radius: 35px;
+            font-size: 18px;
             font-weight: 800;
             cursor: pointer;
             letter-spacing: 2px;
@@ -107,56 +121,56 @@
         }
 
         @media (max-width: 768px) {
-            .container { flex-direction: column; }
-            .login-box, .logo-box { width: 100%; height: 50%; }
-            h2 { font-size: 2rem; }
+            .page-wrapper { padding: 15px; }
+            .main-card { flex-direction: column; }
+            .login-box, .logo-box { width: 100%; height: 50%; padding: 25px; }
+            h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-box">
-            <h2>REGISTRASI</h2>
-            <form action="{{ route('register') }}" method="POST">
-                @csrf
-                
-                <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" required>
-                    <small style="color: #052c16; font-weight: 800; margin-top: 5px; display: block;">
-                        * Minimal 8 karakter
-                    </small>
-                </div>
-
-                <div class="form-group">
-                    <label>Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation" required>
-                </div>
-
-                @if ($errors->any())
-                    <div style="background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 10px; margin-bottom: 15px; font-size: 0.8rem;">
-                        @foreach ($errors->all() as $error)
-                            <p style="margin: 0;">{{ $error }}</p>
-                        @endforeach
+    <div class="page-wrapper">
+        <div class="main-card">
+            <div class="login-box">
+                <h2>REGISTRASI</h2>
+                <form action="{{ route('register') }}" method="POST">
+                    @csrf
+                    
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="name" value="{{ old('name') }}" required>
                     </div>
-                @endif
 
-                <button type="submit" class="btn-mulai">MULAI</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="{{ old('email') }}" required>
+                    </div>
 
-        <div class="logo-box">
-            <img src="/images/logo-seacrest.png" class="logo-white" alt="Logo Seacrest">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Konfirmasi Password</label>
+                        <input type="password" name="password_confirmation" required>
+                    </div>
+
+                    @if ($errors->any())
+                        <div style="background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 10px; margin-bottom: 10px; font-size: 0.75rem; font-weight: 600;">
+                            @foreach ($errors->all() as $error)
+                                <p style="margin: 0;">{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    <button type="submit" class="btn-mulai">MULAI</button>
+                </form>
+            </div>
+
+            <div class="logo-box">
+                <img src="/images/logoputih.png" class="logo-white" alt="Logo Seacrest">
+            </div>
         </div>
     </div>
 </body>
