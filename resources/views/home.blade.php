@@ -312,13 +312,26 @@
                 <input type="text" class="search-input" placeholder="Cari Alat">
             </div>
         </div>
-        <div class="navbar-right">
-            <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <a href="#" class="login-link">LOGIN</a>
-            <a href="#" class="contact-button">CONTACT US</a>
-        </div>
+            <div class="navbar-right">
+        <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+
+        @guest
+            <a href="{{ route('login') }}" class="login-link">LOGIN</a>
+        @else
+            <span style="font-weight: 800; font-size: 14px;">HI, {{ strtoupper(Auth::user()->name) }}</span>
+            <form action="{{ route('logout') }}" method="POST" style="display:inline">
+                @csrf
+                <button type="submit" class="login-link" style="background:none; border:none; cursor:pointer; padding:0; margin-left:15px; font-family:inherit; font-size:14px; font-weight:800; color: #b91c1c;">
+                    LOGOUT
+                </button>
+            </form>
+        @endguest
+        
+        <a href="#" class="contact-button">CONTACT US</a>
+    </div>
+        
     </nav>
 
     <div class="container">
@@ -396,6 +409,7 @@
             </div>
         </section>
     </div>
+
 
     <script>
         const today = new Date().toISOString().split('T')[0];

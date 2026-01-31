@@ -9,12 +9,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Mengambil produk beserta relasi varian harganya
-        $products = Product::whereNull('deleted_at')
-                   ->has('variants')
-                   ->get();
+        // Kita ambil semua produk, walaupun belum punya varian (untuk testing)
+        $products = Product::whereNull('deleted_at')->get();
 
-        // Mengirimkan variabel $products ke file home.blade.php
         return view('home', compact('products'));
     }
 }
