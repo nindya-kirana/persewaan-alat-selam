@@ -383,24 +383,28 @@
             </div>
         </section>
 
+
         <section class="catalog-section">
             <h2 class="catalog-title">Our Best Gears</h2>
             <div class="catalog-grid">
                 @forelse($products as $product)
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="{{ asset('storage/' . (Str::contains($product->image, 'products/') ? $product->image : 'products/'.$product->image)) }}" 
-                                 alt="{{ $product->nama_alat }}"
-                                 onerror="this.src='https://placehold.co/400x400?text=No+Image'">
+                    <a href="{{ route('product.detail', $product->id) }}" style="text-decoration: none; color: inherit;">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="{{ asset('storage/' . (Str::contains($product->image, 'products/') ? $product->image : 'products/'.$product->image)) }}" 
+                                    alt="{{ $product->nama_alat }}"
+                                    onerror="this.src='https://placehold.co/400x400?text=No+Image'">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">{{ $product->nama_alat }}</h3>
+                                <p class="product-price">
+                                    {{-- Mengambil harga terendah dari varian yang ada --}}
+                                    Rp {{ number_format($product->variants->min('harga_per_hari'), 0, ',', '.') }} 
+                                    <span class="price-period">/hari</span>
+                                </p>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-name">{{ $product->nama_alat }}</h3>
-                            <p class="product-price">
-                                Rp {{ number_format($product->variants->min('harga_per_hari'), 0, ',', '.') }} 
-                                <span class="price-period">/hari</span>
-                            </p>
-                        </div>
-                    </div>
+                    </a>
                 @empty
                     <div style="grid-column: 1 / -1; padding: 80px; text-align: center; background: #fff; border-radius: 20px; border: 2px dashed #e2e8f0;">
                         <p style="color: #94a3b8; font-weight: 500;">Maaf, belum ada produk tersedia saat ini.</p>
@@ -408,8 +412,6 @@
                 @endforelse
             </div>
         </section>
-    </div>
-
 
     <script>
         const today = new Date().toISOString().split('T')[0];
