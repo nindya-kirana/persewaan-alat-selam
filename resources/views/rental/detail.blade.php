@@ -1,6 +1,6 @@
 <style>
     /* Styling Halaman Utama */
-    .detail-wrapper { padding: 50px; max-width: 1200px; margin: 0 auto; font-family: 'Poppins', sans-serif; }
+    .detail-wrapper { padding: 50px; max-width: 1200px; margin: 0 auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
     .product-main { display: flex; gap: 50px; background: #fff; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     .product-img { width: 450px; height: 450px; object-fit: cover; border-radius: 20px; background: #f8f9fa; }
     
@@ -13,12 +13,13 @@
     .v-btn { 
         padding: 12px 35px; border: 2px solid #e2e8f0; border-radius: 12px; 
         background: #fff; cursor: pointer; font-weight: 600; transition: all 0.3s; color: #4a5568;
+        font-family: inherit;
     }
     .v-btn:hover { border-color: #1a7f64; color: #1a7f64; background: #f0fdf4; }
 
-    /* Box Deskripsi Hijau (Sesuai Mockup) */
+    /* Box Deskripsi Hijau */
     .desc-box { margin-top: 40px; background: #6b9a85; color: white; padding: 30px; border-radius: 20px; line-height: 1.6; }
-    .desc-box h4 { margin-bottom: 15px; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+    .desc-box h4 { margin-bottom: 15px; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; font-weight: 700; }
 
     /* Modal Overlay & Card */
     .modal-overlay { 
@@ -27,7 +28,7 @@
     }
     .modal-card { 
         background: white; padding: 40px; border-radius: 30px; width: 480px; 
-        position: relative; animation: slideUp 0.4s ease; 
+        position: relative; animation: slideUp 0.4s ease; font-family: 'Segoe UI', sans-serif;
     }
     @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -36,7 +37,6 @@
         font-size: 24px; color: #1a7f64; cursor: pointer; font-weight: bold; 
     }
 
-    /* Elemen di dalam Modal */
     .m-header { display: flex; gap: 20px; align-items: center; margin-bottom: 25px; }
     .m-header img { border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .m-price { font-size: 1.8rem; color: #052c16; font-weight: 700; margin: 0; }
@@ -52,14 +52,14 @@
         background: white; cursor: pointer; font-size: 1.2rem; font-weight: bold; transition: 0.2s;
     }
     .qty-btn:hover { background: #f8fafc; border-color: #1a7f64; }
-    .qty-input { width: 60px; text-align: center; border: none; font-size: 1.2rem; font-weight: 700; }
+    .qty-input { width: 60px; text-align: center; border: none; font-size: 1.2rem; font-weight: 700; font-family: inherit; }
 
     .btn-submit-cart { 
         background: #052c16; color: white; width: 100%; padding: 18px; 
         border-radius: 15px; border: none; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: 0.3s;
+        font-family: inherit;
     }
     .btn-submit-cart:hover { background: #0a4d27; transform: translateY(-2px); }
-    .btn-submit-cart:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
 </style>
 
 <div class="detail-wrapper">
@@ -91,6 +91,7 @@
     </div>
 </div>
 
+{{-- Modal Keranjang --}}
 <div id="cartModal" class="modal-overlay" onclick="if(event.target == this) closeModal()">
     <div class="modal-card">
         <button class="close-modal" onclick="closeModal()">&times;</button>
@@ -108,7 +109,9 @@
         <form action="{{ route('cart.add') }}" method="POST">
             @csrf
             <input type="hidden" name="variant_id" id="m-variant-id">
-            
+            <input type="hidden" name="start_date" value="{{ $start }}">
+            <input type="hidden" name="end_date" value="{{ $end }}">
+
             <label style="font-weight: 600; color: #64748b;">Ukuran Terpilih</label><br>
             <div id="m-size-badge" class="badge-size">-</div>
 

@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class);
     }
+
+    public function rentalItems()
+    {
+    return $this->hasManyThrough(rental_item::class, ProductVariant::class, 'product_id', 'variant_id');
+    }
 }

@@ -1,4 +1,3 @@
-
 <style>
     .cart-page {
         background-color: #6b9a85; /* Hijau sage mockup */
@@ -95,6 +94,7 @@
         cursor: pointer;
         font-size: 1.2rem;
         transition: 0.2s;
+        padding: 5px;
     }
 
     .btn-delete:hover { color: #ef4444; }
@@ -181,59 +181,90 @@
 <div class="cart-page">
     <div class="cart-container">
         <h1 class="cart-title">
-            <a href="{{ url()->previous() }}" style="color: white; text-decoration: none;">❮</a> 
+            {{-- Mengarahkan langsung ke route home --}}
+            <a href="{{ route('home') }}" style="color: white; text-decoration: none;">❮</a> 
             Keranjang Saya
         </h1>
 
-        @php $total = 0; $totalItems = 0; @endphp
+        @php 
+            $groupedCart = collect($cart)->groupBy(function($item) {
+                return $item['start_date'] . ' - ' . $item['end_date'];
+            });
+        @endphp
 
-        @forelse($cart as $id => $details)
+        @forelse($groupedCart as $dateRange => $items)
             @php 
-                $subtotal = $details['price'] * $details['quantity'];
-                $total += $subtotal;
-                $totalItems += $details['quantity'];
+                $firstItem = $items->first();
+                $groupId = Str::slug($dateRange);
+                // Validasi agar tanggal 1970 tidak muncul
+                $isValidDate = isset($firstItem['start_date']) && strtotime($firstItem['start_date']) > 0;
             @endphp
-            
-            <div class="cart-item">
-                <div class="item-left">
-                    <input type="checkbox" class="item-checkbox" checked>
-                    <img src="{{ asset('storage/' . $details['image']) }}" class="item-img" onerror="this.src='https://placehold.co/200x200'">
-                    <div class="item-info">
-                        <h3>{{ $details['name'] }}</h3>
-                        <p>Varian: {{ $details['variant_name'] }}</p>
-                    </div>
+
+            @if($isValidDate)
+                {{-- Header Tanggal (Group) --}}
+                <div style="display: flex; align-items: center; gap: 10px; margin: 25px 0 15px 5px;">
+                    <input type="checkbox" class="group-checkbox" data-group="{{ $groupId }}" checked 
+                        style="accent-color: #052c16; width: 22px; height: 22px; cursor: pointer;">
+                    <span style="color: white; font-weight: 700; font-size: 1.1rem; letter-spacing: 1px;">
+                         {{ date('d/m/Y', strtotime($firstItem['start_date'])) }} - {{ date('d/m/Y', strtotime($firstItem['end_date'])) }}
+                    </span>
                 </div>
 
-                <div class="item-right">
-                    <div class="item-price">Rp {{ number_format($subtotal, 0, ',', '.') }}</div>
+                @foreach($items as $id => $details)
+                    @php $subtotal = $details['price'] * $details['quantity']; @endphp
                     
-                    <div class="action-group">
-                        <form action="{{ route('cart.remove', $id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-delete" title="Hapus Item">🗑️</button>
-                        </form>
+                    <div class="cart-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox cart-item-check group-item-{{ $groupId }}" 
+                                    data-price="{{ $details['price'] }}" 
+                                    data-quantity="{{ $details['quantity'] }}" 
+                                    value="{{ $id }}" checked>
+                            
+                            <img src="{{ asset('storage/' . $details['image']) }}" class="item-img" onerror="this.src='https://placehold.co/200x200'">
+                            
+                            <div class="item-info">
+                                <h3>{{ $details['name'] }}</h3>
+                                <p>Ukuran: {{ $details['variant_name'] }}</p>
+                            </div>
+                        </div>
 
-                        <div class="qty-control">
-                            <form action="{{ route('cart.update', $id) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <input type="hidden" name="action" value="decrease">
-                                <button type="submit" class="qty-btn" {{ $details['quantity'] <= 1 ? 'disabled' : '' }}>−</button>
-                            </form>
+                        <div class="item-right">
+                            <div class="item-price">Rp {{ number_format($subtotal, 0, ',', '.') }}</div>
                             
-                            <input type="text" value="{{ $details['quantity'] }}" readonly class="qty-input">
-                            
-                            <form action="{{ route('cart.update', $id) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <input type="hidden" name="action" value="increase">
-                                <button type="submit" class="qty-btn">+</button>
-                            </form>
+                            <div class="action-group" style="position: relative; z-index: 10;">
+                                {{-- Tombol Hapus --}}
+                                <form action="{{ route('cart.remove', $id) }}" method="POST" style="display: inline-block; margin: 0;">
+                                    @csrf 
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete" onclick="return confirm('Hapus item ini?')">
+                                        🗑️
+                                    </button>
+                                </form>
+
+                                <div class="qty-control" style="display: flex; align-items: center;">
+                                    {{-- Tombol Kurang --}}
+                                    <form action="{{ route('cart.update', $id) }}" method="POST" style="margin: 0; display: inline;">
+                                        @csrf 
+                                        @method('PATCH')
+                                        <input type="hidden" name="action" value="decrease">
+                                        <button type="submit" class="qty-btn" {{ $details['quantity'] <= 1 ? 'disabled' : '' }}>−</button>
+                                    </form>
+                                    
+                                    <input type="text" value="{{ $details['quantity'] }}" readonly class="qty-input">
+                                    
+                                    {{-- Tombol Tambah --}}
+                                    <form action="{{ route('cart.update', $id) }}" method="POST" style="margin: 0; display: inline;">
+                                        @csrf 
+                                        @method('PATCH')
+                                        <input type="hidden" name="action" value="increase">
+                                        <button type="submit" class="qty-btn">+</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                @endforeach
+            @endif
         @empty
             <div style="text-align: center; color: white; padding: 50px;">
                 <h2>Keranjangmu masih kosong :(</h2>
@@ -244,19 +275,55 @@
         @if(count($cart) > 0)
         <div class="ringkasan-card">
             <h3>Ringkasan Alat Sewa</h3>
-            
             <div class="summary-row">
                 <span>Jumlah alat</span>
-                <span>{{ $totalItems }}</span>
+                <span id="selected-count">0</span>
             </div>
-
             <div class="summary-row total-text">
                 <span>Total</span>
-                <span>Rp {{ number_format($total, 0, ',', '.') }}</span>
+                <span id="display-total">Rp 0</span>
             </div>
-
             <button class="btn-checkout">Checkout</button>
         </div>
         @endif
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const checkboxes = document.querySelectorAll('.cart-item-check');
+    const groupCheckboxes = document.querySelectorAll('.group-checkbox');
+    const displayTotal = document.getElementById('display-total');
+    const displayCount = document.getElementById('selected-count');
+
+    function updateSummary() {
+        let total = 0;
+        let count = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                total += parseFloat(cb.getAttribute('data-price')) * parseInt(cb.getAttribute('data-quantity'));
+                count += parseInt(cb.getAttribute('data-quantity'));
+            }
+        });
+        displayCount.innerText = count;
+        displayTotal.innerText = 'Rp ' + total.toLocaleString('id-ID');
+    }
+
+    groupCheckboxes.forEach(groupCb => {
+        groupCb.addEventListener('change', function() {
+            const groupId = this.getAttribute('data-group');
+            const items = document.querySelectorAll('.group-item-' + groupId);
+            items.forEach(item => {
+                item.checked = this.checked;
+            });
+            updateSummary();
+        });
+    });
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateSummary);
+    });
+
+    updateSummary(); 
+});
+</script>
